@@ -12,7 +12,7 @@ connection = mysql.connector.connect(
     host="localhost",
     database="taipei_day_trip",
     user="root",
-    passwd="12345678",
+    passwd="ronally131",
     charset="utf8mb3"
 )
 
@@ -197,4 +197,4 @@ def id_search(attraction_id):
         return jsonify(error)
 
 
-app.run(port=3000)
+app.run(host="172.31.16.162", port=3000)

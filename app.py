@@ -99,7 +99,7 @@ def api_attractions():
         try:
             pages = int(page)
 
-            cursor.execute(attraction_list, (pages*12, pages*12+12))
+            cursor.execute(attraction_list, (pages*12, 12))
             attraction_result = cursor.fetchall()
             column = [index[0] for index in cursor.description]
             data_dict = [dict(zip(column, row))
@@ -194,6 +194,26 @@ def id_search(attraction_id):
     except Error as e:
         print(e)
         error["message"] = "請輸入數字"
+        return jsonify(error)
+
+
+@app.route("/api/categories")
+def categories():
+
+    try:
+        list_cat = "SELECT DISTINCT category FROM attractions;"
+        data = {"data": []}
+        error = {"error": True, "message": ""}
+        cursor.execute(list_cat)
+        categories_list = cursor.fetchall()
+        for i in categories_list:
+            data["data"].append(i[0])
+        print(data)
+        return jsonify(data)
+
+    except Error as e:
+        print(e)
+        error["message"] = "伺服器錯誤"
         return jsonify(error)
 
 

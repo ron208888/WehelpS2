@@ -217,4 +217,4 @@ def categories():
         return jsonify(error)
 
 
-app.run(host="0.0.0.0", port=3000)
+app.run(host="172.31.16.162", port=3000)

@@ -218,4 +218,4 @@ def categories():
 
 
 if __name__ == "__main__":
-    app.run(host="52.9.222.2", port=3000)
+    app.run(host="0.0.0.0", port=3000)

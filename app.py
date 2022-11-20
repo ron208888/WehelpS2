@@ -40,18 +40,16 @@ def check_total(column, keyword, pages, data):
     if column == None and keyword == None:
         cursor.execute("SELECT COUNT(*) FROM attractions;")
         total = cursor.fetchall()[0][0]
-        print(total)
+
     elif column == "category":
         cursor.execute(
-            f"SELECT COUNT(*) FROM attractions WHERE category = '{keyword}';")
+            "SELECT COUNT(*) FROM attractions WHERE category = %s;", (keyword,))
         total = cursor.fetchall()[0][0]
-        print(total)
 
     elif column == "name":
         cursor.execute(
-            f"SELECT COUNT(*) FROM attractions WHERE name LIKE '%{keyword}%';")
+            "SELECT COUNT(*) FROM attractions WHERE name LIKE %s;", (f"%{keyword}%",))
         total = cursor.fetchall()[0][0]
-        print(total)
 
     if total/12 > pages + 1:
         data["nextPage"] = pages + 1
@@ -162,17 +160,16 @@ def api_attractions():
 
 @app.route("/api/attractions/<attraction_id>/")
 def id_search(attraction_id):
-    search_id = f"SELECT * FROM attractions WHERE id = {attraction_id}"
+    search_id = "SELECT * FROM attractions WHERE id = %s"
     data = {"data": {}}
     error = {"error": True, "message": ""}
-    count = 0
     img = []
 
     try:
 
-        cursor.execute(search_id)
+        cursor.execute(search_id, (attraction_id,))
         id_search_result = cursor.fetchall()
-        print(id_search_result)
+
         if id_search_result == []:
             error["message"] = "無此景點編號"
             return jsonify(error)
@@ -187,8 +184,7 @@ def id_search(attraction_id):
 
         data_dict[0]["images"] = img
         data["data"] = data_dict[0]
-        print(data)
-        print(attraction_id)
+
         return jsonify(data)
 
     except Error as e:
@@ -208,7 +204,7 @@ def categories():
         categories_list = cursor.fetchall()
         for i in categories_list:
             data["data"].append(i[0])
-        print(data)
+
         return jsonify(data)
 
     except Error as e:

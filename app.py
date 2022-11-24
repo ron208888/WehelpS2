@@ -12,8 +12,8 @@ connection = mysql.connector.connect(
     host="localhost",
     database="taipei_day_trip",
     user="root",
-    passwd="ronally131",
-    charset="utf8mb4",auth_plugin='mysql_native_password'
+    passwd="12345678",
+    charset="utf8mb4", auth_plugin='mysql_native_password'
 )
 
 cursor = connection.cursor()

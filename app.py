@@ -3,8 +3,10 @@ import mysql.connector
 import mysql.connector.pooling
 from mysql.connector import Error
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -141,6 +143,7 @@ def api_attractions():
 
                 cursor.close()
 
+                cursor = cnx.cursor()
                 cursor.execute(
                     name_search, (f"%{keyword}%", pages*12, pages*12+12))
                 name_result = cursor.fetchall()

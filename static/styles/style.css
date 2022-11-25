@@ -197,6 +197,7 @@ button:hover {
   width: 100%;
   display: flex;
   justify-content: center;
+  padding-bottom: 27px;
 }
 
 #attractions {

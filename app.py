@@ -137,23 +137,20 @@ def api_attractions():
             try:
 
                 pages = int(page)
-
+                cursor = cnx.cursor()
                 cursor.execute(cat_search, (keyword, pages*12, pages*12+12))
                 cat_result = cursor.fetchall()
-
-                cursor.close()
 
                 cursor = cnx.cursor()
                 cursor.execute(
                     name_search, (f"%{keyword}%", pages*12, pages*12+12))
                 name_result = cursor.fetchall()
 
-                cursor.close()
-
                 if cat_result != [] and name_result == []:
                     column = [index[0] for index in cursor.description]
                     data_dict = [dict(zip(column, row))
                                  for row in cat_result]
+                    cursor.close()
                     set_img(data_dict)
                     correct_data = check_total(
                         "category", keyword, pages, data)
@@ -164,6 +161,7 @@ def api_attractions():
                     column = [index[0] for index in cursor.description]
                     data_dict = [dict(zip(column, row))
                                  for row in name_result]
+                    cursor.close()
                     set_img(data_dict)
                     correct_data = check_total(
                         "name", keyword, pages, data)

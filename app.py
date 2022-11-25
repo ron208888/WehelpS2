@@ -111,7 +111,7 @@ def api_attractions():
             if correct_data["data"] == []:
                 error_data["message"] = "查無此頁"
                 return jsonify(error_data)
-
+            connection.close()
             return jsonify(correct_data)
 
         except ValueError:
@@ -129,6 +129,7 @@ def api_attractions():
             cursor.execute(
                 name_search, (f"%{keyword}%", pages*12, pages*12+12))
             name_result = cursor.fetchall()
+            connection.close()
 
             if cat_result != [] and name_result == []:
                 column = [index[0] for index in cursor.description]

@@ -7,19 +7,16 @@ app = Flask(__name__)
 app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-try:
-    connection = mysql.connector.connect(
-        host="localhost",
-        database="taipei_day_trip",
-        user="root",
-        passwd="12345678",
-        charset="utf8mb4", auth_plugin='mysql_native_password'
-    )
 
-    cursor = connection.cursor()
-
-except mysql.connector.errors.OperationalError:
-    connection.reconnect()
+connection = mysql.connector.connect(
+    host="localhost",
+    database="taipei_day_trip",
+    user="root",
+    passwd="12345678",
+    charset="utf8mb4", auth_plugin='mysql_native_password'
+)
+connection.ping()
+cursor = connection.cursor()
 
 
 def set_img(data_dict):

@@ -40,16 +40,19 @@ def check_total(column, keyword, pages, data):
     if column == None and keyword == None:
         cursor.execute("SELECT COUNT(*) FROM attractions;")
         total = cursor.fetchall()[0][0]
+        connection.close()
 
     elif column == "category":
         cursor.execute(
             "SELECT COUNT(*) FROM attractions WHERE category = %s;", (keyword,))
         total = cursor.fetchall()[0][0]
+        connection.close()
 
     elif column == "name":
         cursor.execute(
             "SELECT COUNT(*) FROM attractions WHERE name LIKE %s;", (f"%{keyword}%",))
         total = cursor.fetchall()[0][0]
+        connection.close()
 
     if total/12 > pages + 1:
         data["nextPage"] = pages + 1
@@ -108,6 +111,8 @@ def api_attractions():
                 None, None,  pages=pages, data=data)
             correct_data["data"] = data_dict
 
+            connection.close()
+
             if correct_data["data"] == []:
                 error_data["message"] = "查無此頁"
                 return jsonify(error_data)
@@ -129,6 +134,7 @@ def api_attractions():
             cursor.execute(
                 name_search, (f"%{keyword}%", pages*12, pages*12+12))
             name_result = cursor.fetchall()
+            connection.close()
 
             if cat_result != [] and name_result == []:
                 column = [index[0] for index in cursor.description]
@@ -169,6 +175,7 @@ def id_search(attraction_id):
 
         cursor.execute(search_id, (attraction_id,))
         id_search_result = cursor.fetchall()
+        connection.close()
 
         if id_search_result == []:
             error["message"] = "無此景點編號"
@@ -202,6 +209,7 @@ def categories():
         error = {"error": True, "message": ""}
         cursor.execute(list_cat)
         categories_list = cursor.fetchall()
+        connection.close()
         for i in categories_list:
             data["data"].append(i[0])
 

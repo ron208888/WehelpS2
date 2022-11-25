@@ -17,8 +17,7 @@ dbconfig = {
     "charset": "utf8mb4", "auth_plugin": 'mysql_native_password'}
 
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name="mypool", pool_size=3, **dbconfig)
-cnx = cnxpool.get_connection()
+    pool_name="mypool", pool_size=10, **dbconfig)
 
 
 def set_img(data_dict):
@@ -39,6 +38,7 @@ def set_img(data_dict):
 
 
 def check_total(column, keyword, pages, data):
+    cnx = cnxpool.get_connection()
     try:
         cursor = cnx.cursor()
         if column == None and keyword == None:
@@ -92,6 +92,7 @@ def thankyou():
 
 @app.route("/api/attractions")
 def api_attractions():
+    cnx = cnxpool.get_connection()
     try:
         cursor = cnx.cursor()
         page = request.args.get("page")
@@ -179,7 +180,7 @@ def api_attractions():
 
 @app.route("/api/attractions/<attraction_id>/")
 def id_search(attraction_id):
-
+    cnx = cnxpool.get_connection()
     try:
         cursor = cnx.cursor()
         search_id = "SELECT * FROM attractions WHERE id = %s"
@@ -222,6 +223,7 @@ def id_search(attraction_id):
 
 @app.route("/api/categories")
 def categories():
+    cnx = cnxpool.get_connection()
     try:
         cursor = cnx.cursor()
         try:

@@ -19,7 +19,7 @@ dbconfig = {
     "charset": "utf8mb4", "auth_plugin": 'mysql_native_password'}
 
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(
-    pool_name="mypool", pool_size=10, **dbconfig)
+    pool_name="mypool", pool_size=3, **dbconfig)
 
 
 def set_img(data_dict):

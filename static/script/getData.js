@@ -136,7 +136,7 @@ window.addEventListener("load", function () {
     let searchInput = document.querySelector("#search-input");
     let keyword = searchInput.value;
 
-    if (top + bar >= ph) {
+    if (top + bar === ph) {
       console.log("到底");
       if (keyword !== "") {
         let page = sessionStorage.getItem("searchNextPage");

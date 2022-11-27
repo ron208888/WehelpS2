@@ -1,3 +1,5 @@
+let isLoading = false;
+
 function attractionRender(data) {
   let result = data.data;
   let attractions = document.getElementById("attractions");
@@ -38,6 +40,7 @@ function attractionRender(data) {
 }
 
 function getData(page) {
+  isLoading = true;
   fetch(`http://52.9.222.2:3000/api/attractions?page=${page}`)
     .then(function (response) {
       return response.json();
@@ -47,6 +50,7 @@ function getData(page) {
       attractionRender(data);
       sessionStorage.setItem("nextPage", data.nextPage);
     });
+  isLoading = false;
 }
 
 function getCat() {
@@ -75,6 +79,7 @@ function getCat() {
 }
 
 function search(page) {
+  isLoading = true;
   const searchInput = document.querySelector("#search-input");
   const input = searchInput.value;
   let attractions = document.querySelector("#attractions");
@@ -105,6 +110,7 @@ function search(page) {
         console.log(e);
       }
     });
+  isLoading = false;
 }
 
 function scrollTop() {
@@ -128,7 +134,6 @@ function pageHeight() {
   );
 }
 
-let isLoading = false;
 window.addEventListener("load", function () {
   window.onscroll = function () {
     let top = scrollTop();
@@ -146,18 +151,14 @@ window.addEventListener("load", function () {
           if (page === "null") {
             return false;
           } else {
-            isLoading = true;
             search(page);
-            isLoading = false;
           }
         } else {
           let page = sessionStorage.getItem("nextPage");
           if (page === "null") {
             return false;
           } else {
-            isLoading = true;
             getData(page);
-            isLoading = false;
           }
         }
       } else {

@@ -1,4 +1,4 @@
-let isLoading = false;
+isLoading = false;
 
 function attractionRender(data) {
   let result = data.data;

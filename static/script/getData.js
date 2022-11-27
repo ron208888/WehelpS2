@@ -128,6 +128,7 @@ function pageHeight() {
   );
 }
 
+let isLoading = false;
 window.addEventListener("load", function () {
   window.onscroll = function () {
     let top = scrollTop();
@@ -136,26 +137,32 @@ window.addEventListener("load", function () {
     let searchInput = document.querySelector("#search-input");
     let keyword = searchInput.value;
 
-    if (top + bar === ph) {
-      console.log("到底");
-      if (keyword !== "") {
-        let page = sessionStorage.getItem("searchNextPage");
+    if (isLoading === false) {
+      if (top + bar === ph) {
+        console.log("到底");
+        if (keyword !== "") {
+          let page = sessionStorage.getItem("searchNextPage");
 
-        if (page === "null") {
-          return false;
+          if (page === "null") {
+            isLoading = true;
+            return false;
+          } else {
+            isLoading = true;
+            search(page);
+          }
         } else {
-          search(page);
+          let page = sessionStorage.getItem("nextPage");
+          if (page === "null") {
+            isLoading = true;
+            return false;
+          } else {
+            isLoading = true;
+            getData(page);
+          }
         }
       } else {
-        let page = sessionStorage.getItem("nextPage");
-        if (page === "null") {
-          return false;
-        }
-
-        getData(page);
+        console.log("没有到底部");
       }
-    } else {
-      console.log("没有到底部");
     }
   };
 });

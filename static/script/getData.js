@@ -144,20 +144,20 @@ window.addEventListener("load", function () {
           let page = sessionStorage.getItem("searchNextPage");
 
           if (page === "null") {
-            isLoading = true;
             return false;
           } else {
             isLoading = true;
             search(page);
+            isLoading = false;
           }
         } else {
           let page = sessionStorage.getItem("nextPage");
           if (page === "null") {
-            isLoading = true;
             return false;
           } else {
             isLoading = true;
             getData(page);
+            isLoading = false;
           }
         }
       } else {

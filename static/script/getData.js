@@ -1,4 +1,4 @@
-isLoading = false;
+let isLoading = false;
 
 function attractionRender(data) {
   let result = data.data;
@@ -49,8 +49,8 @@ function getData(page) {
       console.log(data);
       attractionRender(data);
       sessionStorage.setItem("nextPage", data.nextPage);
+      isLoading = false;
     });
-  isLoading = false;
 }
 
 function getCat() {
@@ -79,7 +79,6 @@ function getCat() {
 }
 
 function search(page) {
-  isLoading = true;
   const searchInput = document.querySelector("#search-input");
   const input = searchInput.value;
   let attractions = document.querySelector("#attractions");
@@ -89,7 +88,7 @@ function search(page) {
     }
   }
   console.log(input);
-
+  isLoading = true;
   fetch(`http://52.9.222.2:3000/api/attractions?page=${page}&keyword=${input}`)
     .then(function (response) {
       return response.json();
@@ -109,8 +108,8 @@ function search(page) {
       } catch (e) {
         console.log(e);
       }
+      isLoading = false;
     });
-  isLoading = false;
 }
 
 function scrollTop() {
@@ -142,9 +141,9 @@ window.addEventListener("load", function () {
     let searchInput = document.querySelector("#search-input");
     let keyword = searchInput.value;
 
-    if (isLoading === false) {
-      if (top + bar === ph) {
-        console.log("到底");
+    if (top + bar === ph) {
+      console.log("到底");
+      if (isLoading === false) {
         if (keyword !== "") {
           let page = sessionStorage.getItem("searchNextPage");
 
@@ -161,9 +160,9 @@ window.addEventListener("load", function () {
             getData(page);
           }
         }
-      } else {
-        console.log("没有到底部");
       }
+    } else {
+      console.log("没有到底部");
     }
   };
 });

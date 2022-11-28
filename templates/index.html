@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/styles/style.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+    </style>
+    <script src="../static/script/getData.js" type="text/javascript"></script>
+    <title>台北一日遊 首頁</title>
+  </head>
+  <body onload=" getData(0);getCat()">
+    <header>
+      <div id="fixed">
+        <div id="Navigation">
+          <div id="nav-content">
+            <div id="title-text">台北一日遊</div>
+            <div id="nav-btns">
+              <button id="reservation-btn">預定行程</button>
+              <button id="register-btn">登入/註冊</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="welcome-img">
+        <div id="welcome-content">
+          <h1 id="welcome-title">輕鬆享受台北一日休閒</h1>
+          <p id="welcome-text">探索每個角落，體驗城市的深度旅遊行程</p>
+          <form onsubmit="return false">
+            <input
+              type="text"
+              placeholder="輸入景點名稱查詢"
+              id="search-input"
+            /><button id="search-btn" type="submit" onclick="return search(0);">
+              <img id="fa-search" src="../static/pic/icon_search.png" />
+            </button>
+          </form>
+          <div id="category"></div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div id="mainContent">
+        <div id="attractions"></div>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div id="footerDiv">COPYRIGHT © 2022 台北一日遊</div>
+    </footer>
+
+    <script>
+      document.addEventListener("click", function () {
+        let show = document.querySelector("#category");
+        show.style.display = "none";
+      });
+      let input = document.querySelector("#search-input");
+      input.addEventListener("click", function () {
+        event.stopPropagation();
+        let show = document.querySelector("#category");
+        if (show.style.display == "block") {
+          show.style.display = "none";
+        } else {
+          show.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>

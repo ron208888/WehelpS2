@@ -31,6 +31,9 @@ function attractionRender(data) {
 
       addAttraction.appendChild(detailInfo);
       addAttraction.className = "attraction";
+      addAttraction.onclick = function () {
+        window.location.href = `http://52.9.222.2:3000/attractions/${result[i].id}/`;
+      };
 
       attractions.appendChild(addAttraction);
     }

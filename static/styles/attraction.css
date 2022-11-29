@@ -391,3 +391,74 @@ hr {
     margin-right: auto;
   }
 }
+
+@media (max-width: 660px) {
+  #fixed {
+    width: 360px;
+  }
+
+  #Navigation {
+    width: 360px;
+  }
+
+  #nav-content {
+    width: 360px;
+  }
+
+  #attractionInfo {
+    width: 360px;
+  }
+
+  #topInfo {
+    width: 360px;
+  }
+
+  #imgScreen {
+    width: 360px;
+  }
+
+  img {
+    width: 360px;
+  }
+
+  #textInfo {
+    width: 360px;
+  }
+
+  #nameInfo {
+    width: 360px;
+  }
+
+  #catInfo {
+    width: 360px;
+  }
+
+  #bookingInfo {
+    width: 360px;
+  }
+
+  #bookingTitle {
+    width: 360px;
+  }
+
+  #bookingIntro {
+    width: 300px;
+    line-height: 1.2;
+  }
+
+  #date {
+    margin-top: 30px;
+  }
+
+  #bottomInfo {
+    width: 360px;
+  }
+
+  #description {
+    width: 360px;
+  }
+
+  main {
+    width: 360px;
+  }
+}

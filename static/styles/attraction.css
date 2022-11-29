@@ -11,7 +11,7 @@ main {
 #topInfo {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 37px;
+  margin: 37px 0;
 }
 
 #imgScreen {
@@ -134,7 +134,7 @@ img {
 }
 
 #bookingInfo {
-  width: 600px;
+  width: 540px;
   height: 302px;
 
   background: #e8e8e8;
@@ -339,81 +339,45 @@ hr {
 }
 
 @media (max-width: 1200px) {
+  main {
+    width: 80%;
+  }
+
   #nav-content {
-    width: 90%;
-    justify-content: space-between;
+    width: 80%;
   }
 
   #attractionInfo {
-    width: 90%;
-    margin: 0 auto;
+    width: 80%;
   }
 
   #topInfo {
-    width: 90%;
-
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 37px;
-  }
-
-  #imgScreen {
-    overflow: hidden;
-    position: relative;
-
-    margin: auto;
-  }
-
-  #textInfo {
-    /* width: 600px; */
-    width: 540px;
-    height: 406px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin: 0 auto;
-  }
-
-  #bookingInfo {
-    /* width: 90%; */
-    width: 540px;
+    display: grid;
+    grid-template-rows: auto;
+    justify-content: center;
   }
 
   hr {
     width: 80%;
   }
-
-  #bottomInfo {
-    width: 540px;
-    margin-top: 37px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
-@media (max-width: 660px) {
-  #fixed {
-    width: 360px;
-  }
-
-  #Navigation {
-    width: 360px;
-  }
-
+@media (max-width: 600px) {
+  #Navigation,
   #nav-content {
-    width: 360px;
-  }
-
-  #attractionInfo {
-    width: 360px;
+    width: 90%;
   }
 
   #topInfo {
+    display: block;
+  }
+
+  #imgScreen,
+  #sliderMain {
     width: 360px;
   }
 
-  #imgScreen {
+  .item {
     width: 360px;
   }
 
@@ -421,44 +385,25 @@ hr {
     width: 360px;
   }
 
-  #textInfo {
-    width: 360px;
-  }
-
-  #nameInfo {
-    width: 360px;
-  }
-
-  #catInfo {
-    width: 360px;
-  }
-
-  #bookingInfo {
-    width: 360px;
-  }
-
-  #bookingTitle {
+  #textInfo,
+  #nameInfo,
+  #catInfo,
+  #bookingInfo,
+  #bottomInfo {
     width: 360px;
   }
 
   #bookingIntro {
     width: 300px;
-    line-height: 1.2;
+    line-height: 1.5;
+    margin-bottom: 35px;
   }
 
-  #date {
-    margin-top: 30px;
-  }
-
-  #bottomInfo {
+  hr {
     width: 360px;
   }
 
-  #description {
-    width: 360px;
-  }
-
-  main {
-    width: 360px;
+  #footer {
+    width: 620px;
   }
 }

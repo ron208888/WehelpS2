@@ -96,12 +96,12 @@ function prev() {
 
 refresh();
 
-let feeCount = document.getElementById("feeCount");
-
 function morning() {
+  let feeCount = document.getElementById("feeCount");
   feeCount.textContent = "新台幣2000元";
 }
 
 function afternoon() {
+  let feeCount = document.getElementById("feeCount");
   feeCount.textContent = "新台幣2500元";
 }

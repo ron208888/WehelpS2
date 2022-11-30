@@ -214,12 +214,9 @@ img {
   color: #666666;
 }
 
-.time {
-  width: 15px;
-  height: 15px;
-}
-
 .chosenTime {
+  width: 18px;
+  height: 18px;
   accent-color: #448899;
 }
 
@@ -273,6 +270,7 @@ label:hover {
 
   background: #448899;
   border-radius: 5px;
+  border: none;
 
   font-family: "Noto Sans TC";
   font-style: normal;
@@ -395,11 +393,11 @@ hr {
 
 @media (max-width: 560px) {
   #attractionInfo {
-    width: 90%;
+    width: 100%;
   }
 
   #topInfo {
-    width: 50%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -414,12 +412,16 @@ hr {
   }
 
   img {
-    min-height: 100%;
+    width: 560px;
   }
 
   #textInfo {
     margin-top: 20px;
     margin-left: 0;
+  }
+
+  #nameInfo {
+    width: max-content;
   }
 
   #bookingInfo {
@@ -459,7 +461,12 @@ hr {
   }
 
   #imgScreen {
+    width: 100%;
     margin: 0 auto;
+  }
+
+  img {
+    width: 440px;
   }
 
   #textInfo {

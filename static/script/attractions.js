@@ -1,8 +1,8 @@
 function getAttraction() {
-  // let nowOn = window.location.pathname;
-  // console.log(nowOn);
-  // let page = nowOn.split("/").reverse()[0];
-  let page = 10;
+  let nowOn = window.location.pathname;
+  console.log(nowOn);
+  let page = nowOn.split("/").reverse()[0];
+
   fetch(`http://52.9.222.2:3000/api/attractions/${page}`)
     .then(function (response) {
       return response.json();

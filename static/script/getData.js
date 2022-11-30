@@ -169,3 +169,7 @@ window.addEventListener("load", function () {
     }
   };
 });
+
+function toHome() {
+  window.location.href("http://52.9.222.2:3000/");
+}

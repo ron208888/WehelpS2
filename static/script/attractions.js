@@ -107,5 +107,5 @@ function afternoon() {
 }
 
 function toHome() {
-  window.location.href("http://52.9.222.2:3000/");
+  window.location.href = "http://52.9.222.2:3000/";
 }

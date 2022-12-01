@@ -1,0 +1,493 @@
+main {
+  margin: 37px auto;
+  width: 100%;
+}
+
+#attractionInfo {
+  margin: 0 auto;
+  width: 1200px;
+}
+
+#topInfo {
+  display: flex;
+  margin-top: 70px;
+  margin-bottom: 48px;
+}
+
+#imgScreen {
+  /* margin: 0; */
+
+  width: 540px;
+  height: 406px;
+
+  margin-right: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+#sliderMain {
+  width: 100%;
+
+  height: 406px;
+  position: relative;
+  left: 0;
+  display: flex;
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+}
+
+img {
+  width: 540px;
+  height: 100%;
+}
+
+#next {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 185px;
+  right: 10px;
+
+  opacity: 0.8;
+  background: url(../pic/btn_rightArrow.png);
+}
+
+#prev {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 185px;
+  left: 10px;
+
+  opacity: 0.8;
+  background: url(../pic/btn_leftArrow.png);
+}
+
+#next:hover {
+  cursor: pointer;
+}
+
+#prev:hover {
+  cursor: pointer;
+}
+
+#indexAdjust {
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  bottom: 13px;
+  display: flex;
+  justify-content: center;
+}
+
+#index {
+  display: flex;
+}
+
+.indexIcon {
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: white;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  margin: 0 6px;
+  border: white solid 2px;
+  border-radius: 50%;
+  background-color: #000000;
+}
+
+#textInfo {
+  width: 50%;
+
+  height: 406px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+#nameInfo {
+  width: 100%;
+
+  margin-bottom: 20px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 1px;
+
+  color: #666666;
+}
+
+#catInfo {
+  width: 100%;
+
+  margin-bottom: 20px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+  letter-spacing: 2px;
+
+  color: #666666;
+}
+
+#bookingInfo {
+  height: 100%;
+  background: #e8e8e8;
+  border-radius: 5px;
+}
+
+#bookingTitle {
+  width: 100%;
+
+  height: 22px;
+  margin: 20px 20px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 13px;
+
+  color: #666666;
+}
+
+#bookingIntro {
+  width: 100%;
+
+  height: 24px;
+  margin: 0 20px 20px 20px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+
+  color: #666666;
+}
+
+#date {
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+#chooseDate {
+  width: 149px;
+  height: 25px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+}
+
+#time {
+  margin-left: 20px;
+  margin-bottom: 30px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+.chosenTime {
+  width: 18px;
+  height: 18px;
+  accent-color: #448899;
+}
+
+.chosenTime:hover {
+  cursor: pointer;
+}
+
+label {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+#fee {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  display: flex;
+}
+
+#feeTitle {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+#feeCount {
+  margin-left: 5px;
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+#startTrip {
+  margin-left: 20px;
+
+  width: 154px;
+  height: 36px;
+
+  background: #448899;
+  border-radius: 5px;
+  border: none;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 16px;
+
+  color: #ffffff;
+}
+
+hr {
+  width: 1200px;
+  height: 0px;
+  border: 1px solid #e8e8e8;
+}
+
+#bottomInfo {
+  margin-top: 37px;
+}
+
+#description {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #666666;
+}
+
+#addressInfo {
+  margin-top: 20px;
+}
+
+#addressTitle {
+  height: 32px;
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+#address {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #666666;
+}
+
+#transportInfo {
+  margin-top: 20px;
+}
+
+#transportTitle {
+  height: 32px;
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 13px;
+  color: #666666;
+}
+
+#transport {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  color: #666666;
+}
+
+@media (max-width: 1240px) {
+  #nav-content {
+    width: 80%;
+  }
+
+  #attractionInfo {
+    width: 80%;
+  }
+
+  #topInfo {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-auto-rows: 50% 50%;
+    justify-content: center;
+  }
+
+  #imgScreen {
+    margin: 0;
+  }
+
+  #textInfo {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+
+  #bookingInfo {
+    width: 540px;
+  }
+
+  hr {
+    width: 90%;
+  }
+
+  #bottomInfo {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #footer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  #attractionInfo {
+    width: 100%;
+  }
+
+  #topInfo {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-auto-rows: 50% 50%;
+    justify-content: center;
+  }
+
+  #imgScreen {
+    width: 100%;
+
+    margin: 0;
+  }
+
+  img {
+    width: 560px;
+  }
+
+  #textInfo {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+
+  #nameInfo {
+    width: max-content;
+  }
+
+  #bookingInfo {
+    width: max-content;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  #bottomInfo {
+    margin: 0 auto;
+  }
+
+  #footer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 440px) {
+  #fixed {
+    width: 100%;
+  }
+
+  #Navigation {
+    width: 100%;
+  }
+
+  #nav-content {
+    width: 95%;
+    margin-left: 0;
+  }
+
+  #topInfo {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  #imgScreen {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 440px;
+  }
+
+  #textInfo {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  #bookingInfo {
+    width: 100%;
+  }
+
+  #bookingTitle {
+    width: 90%;
+  }
+
+  #bookingIntro {
+    width: 90%;
+    line-height: 1.2;
+  }
+
+  #date {
+    margin-top: 30px;
+  }
+}

@@ -194,8 +194,6 @@ def id_search(attraction_id):
             cursor.execute(search_id, (attraction_id,))
             id_search_result = cursor.fetchall()
 
-            cursor.close()
-
             if id_search_result == []:
                 error["message"] = "無此景點編號"
                 return jsonify(error)

@@ -1,14 +1,12 @@
 function getAttraction() {
   let nowOn = window.location.pathname;
-  console.log(nowOn);
   let page = nowOn.split("/").reverse()[0];
 
-  fetch(`http://52.9.222.2:3000/api/attractions/${page}`)
+  fetch(`/api/attractions/${page}`)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       let result = data.data;
       let nameInfo = document.getElementById("nameInfo");
       let catInfo = document.getElementById("catInfo");
@@ -23,12 +21,9 @@ function getAttraction() {
       transport.textContent = result.transport;
 
       let images = result.images;
-      console.log(images);
-      let imgScreen = document.getElementById("imgScreen");
+
       let sliderMain = document.getElementById("sliderMain");
 
-      let next = document.getElementById("next");
-      let prev = document.getElementById("prev");
       let index = document.getElementById("index");
 
       for (let i = 0; i < images.length; i++) {
@@ -60,7 +55,6 @@ function getAttraction() {
 let index = 0;
 
 function refresh() {
-  console.log(index);
   if (index > document.querySelectorAll(".indexIcon").length) {
     index = 0;
   } else if (index < 0) {
@@ -107,5 +101,5 @@ function afternoon() {
 }
 
 function toHome() {
-  window.location.href = "http://52.9.222.2:3000/";
+  window.location.href = "/";
 }

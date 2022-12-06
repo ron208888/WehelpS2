@@ -6,7 +6,7 @@ html body {
 #fixed {
   position: fixed;
   top: 0;
-  z-index: 4;
+  z-index: 99;
   display: flex;
   justify-items: center;
   width: 100%;

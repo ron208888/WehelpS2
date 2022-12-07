@@ -32,7 +32,7 @@ function attractionRender(data) {
       addAttraction.appendChild(detailInfo);
       addAttraction.className = "attraction";
       addAttraction.onclick = function () {
-        window.location.href = `http://52.9.222.2:3000/attraction/${result[i].id}`;
+        window.location.href = `/attraction/${result[i].id}`;
       };
 
       attractions.appendChild(addAttraction);
@@ -44,12 +44,12 @@ function attractionRender(data) {
 
 function getData(page) {
   isLoading = true;
-  fetch(`http://52.9.222.2:3000/api/attractions?page=${page}`)
+
+  fetch(`/api/attractions?page=${page}`)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       attractionRender(data);
       sessionStorage.setItem("nextPage", data.nextPage);
       isLoading = false;
@@ -59,7 +59,7 @@ function getData(page) {
 function getCat() {
   let category = document.querySelector("#category");
 
-  fetch(`http://52.9.222.2:3000/api/categories`)
+  fetch(`/api/categories`)
     .then(function (response) {
       return response.json();
     })
@@ -90,14 +90,14 @@ function search(page) {
       attractions.removeChild(attractions.firstChild);
     }
   }
-  console.log(input);
+
   isLoading = true;
-  fetch(`http://52.9.222.2:3000/api/attractions?page=${page}&keyword=${input}`)
+
+  fetch(`/api/attractions?page=${page}&keyword=${input}`)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data.data);
       try {
         if (data.data === undefined) {
           let attractions = document.getElementById("attractions");
@@ -145,7 +145,6 @@ window.addEventListener("load", function () {
     let keyword = searchInput.value;
 
     if (top + bar === ph) {
-      console.log("到底");
       if (isLoading === false) {
         if (keyword !== "") {
           let page = sessionStorage.getItem("searchNextPage");
@@ -164,12 +163,10 @@ window.addEventListener("load", function () {
           }
         }
       }
-    } else {
-      console.log("没有到底部");
     }
   };
 });
 
 function toHome() {
-  window.location.href = "http://52.9.222.2:3000/";
+  window.location.href = " /";
 }

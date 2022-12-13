@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask import Blueprint
 from attraction import attraction
 from user import user
+from booking import booking
 
 app = Flask(__name__)
 CORS(app)
@@ -14,6 +15,7 @@ app.config["JSON_AS_ASCII"] = False
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.register_blueprint(attraction)
 app.register_blueprint(user)
+app.register_blueprint(booking)
 
 # Pages
 

@@ -99,7 +99,3 @@ function afternoon() {
   let feeCount = document.getElementById("feeCount");
   feeCount.textContent = "新台幣2500元";
 }
-
-function toHome() {
-  window.location.href = "/";
-}

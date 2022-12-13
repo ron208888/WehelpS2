@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../static/styles/all.css" />
+    <link rel="stylesheet" href="../static/styles/booking.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap");
+    </style>
+
+    <script src="../static/script/signIn.js" type="text/javascript"></script>
+    <title>預定行程</title>
+  </head>
+  <body onload=" signInOrNotForBookingPage();reservation()  ">
+    <header>
+      <div id="fixed">
+        <div id="Navigation">
+          <div id="nav-content">
+            <div id="title-text" onclick="toHome()">台北一日遊</div>
+            <div id="nav-btns">
+              <button id="reservation-btn" onclick="location.reload()">
+                預定行程
+              </button>
+              <button id="register-btn" onclick="signInBtn()">登入/註冊</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div id="attractionInfo">
+        <div id="signBox">
+          <div id="signIn">
+            <div class="signInBar"></div>
+            <div class="cancel" onclick="cancel()"></div>
+            <div class="signInTitle">登入會員帳號</div>
+            <form action="/" onsubmit="return false">
+              <input
+                type="text"
+                id="signInEmail"
+                class="email"
+                name="signInEmail"
+                placeholder="輸入電子信箱"
+              />
+              <input
+                type="password"
+                id="signInPassword"
+                class="password"
+                name="signInPassword"
+                placeholder="輸入密碼"
+              />
+              <button type="button" onclick="signIn()" id="signIn-btn">
+                登入帳戶
+              </button>
+            </form>
+            <div id="signInMessage"></div>
+            <div class="leadToSignUp">
+              <div class="noAccount">還沒有帳戶？</div>
+              <div class="SignUpLink" onclick="toSignUp()">點此註冊</div>
+            </div>
+          </div>
+
+          <div id="signUp">
+            <div class="signInBar"></div>
+            <div class="cancel" onclick="cancel()"></div>
+            <div class="signInTitle">註冊會員帳號</div>
+            <form action="/" onsubmit="return false" id="signUpForm">
+              <input
+                type="text"
+                id="signUpName"
+                class="name"
+                name="signUpName"
+                placeholder="輸入姓名"
+              />
+              <input
+                type="text"
+                id="signUpEmail"
+                class="email"
+                name="signUpEmail"
+                placeholder="輸入電子信箱"
+              />
+              <input
+                type="password"
+                id="signUpPassword"
+                class="password"
+                name="signUpPassword"
+                placeholder="輸入密碼"
+              />
+              <button type="button" onclick="signUp()" id="signIn-btn">
+                註冊新帳戶
+              </button>
+            </form>
+            <div id="signUpMessage"></div>
+            <div class="leadToSignUp">
+              <div class="noAccount">已經有帳戶了？</div>
+              <div class="SignUpLink" onclick="toSignUp()">點此登入</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bookingAttraction">
+          <div class="bookingTitle" id="bookingTitle">
+            您好，待預定的行程如下：
+          </div>
+          <div id="bookingItem"></div>
+        </div>
+        <hr />
+        <div class="contactInfo">
+          <div class="bookingTitle">您的聯絡資訊</div>
+          <form action="">
+            聯絡姓名：<input type="text" class="input" id="bookingName" />
+            <br />
+            聯絡信箱：<input
+              type="email"
+              class="input"
+              id="bookingEmail"
+            /><br />
+            手機號碼：<input
+              pattern="09\d{2}\-?\d{3}\-?\d{3}"
+              type="text"
+              class="input"
+            />
+            <div>
+              請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
+            </div>
+          </form>
+        </div>
+        <hr />
+        <div class="creditCard">
+          <div class="bookingTitle">信用卡付款資訊</div>
+          <form action="">
+            卡片號碼：<input
+              pattern="[0-9]{13,16}"
+              type="text"
+              class="input"
+            /><br />
+            過期時間：<input
+              type="text"
+              placeholder="MM/YY"
+              name=""
+              id=""
+              class="input"
+            /><br />
+            驗證密碼：<input
+              type="text"
+              placeholder="CVV"
+              maxlength="3"
+              name=""
+              id=""
+              class="input"
+            />
+          </form>
+        </div>
+        <hr />
+        <div id="confirm">
+          <div id="price">總價：</div>
+          <button id="confirm-btn">確認訂購並付款</button>
+        </div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div id="footerDiv">COPYRIGHT © 2022 台北一日遊</div>
+    </footer>
+  </body>
+</html>

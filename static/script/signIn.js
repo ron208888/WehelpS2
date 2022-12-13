@@ -1,3 +1,7 @@
+function toHome() {
+  window.location.href = " /";
+}
+
 function signInOrNot() {
   fetch("/api/user/auth", {
     method: "GET",
@@ -10,6 +14,24 @@ function signInOrNot() {
         let registerBtn = document.getElementById("register-btn");
         registerBtn.textContent = "登出系統";
         registerBtn.onclick = signOut;
+      }
+    });
+}
+
+function signInOrNotForBookingPage() {
+  fetch("/api/user/auth", {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.data !== null) {
+        let registerBtn = document.getElementById("register-btn");
+        registerBtn.textContent = "登出系統";
+        registerBtn.onclick = signOut;
+      } else {
+        window.location.href = "/";
       }
     });
 }
@@ -144,4 +166,222 @@ function toSignUp() {
     signUp.style.display = "none";
     signIn.style.display = "block";
   }
+}
+
+function signInBooking() {
+  fetch("/api/user/auth", {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.data !== null) {
+        window.location.href = "/booking";
+      } else {
+        signInBtn();
+      }
+    });
+}
+
+function startBooking() {
+  fetch("/api/user/auth", {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.data !== null) {
+        const nowOn = window.location.pathname;
+        const attractionId = nowOn.split("/").reverse()[0];
+        const date = document.getElementById("chooseDate").value;
+        const feeCount = document.getElementById("feeCount").textContent;
+        let time = "";
+        let price = 0;
+
+        if (date === "" && feeCount === "") {
+          alert("請選擇日期及時間");
+        } else if (date === "") {
+          alert("請選擇日期");
+        } else if (feeCount === "") {
+          alert("請選擇時間");
+        } else {
+          if (feeCount === "新台幣2000元") {
+            time = "morning";
+            price = 2000;
+          } else {
+            time = "afternoon";
+            price = 2500;
+          }
+          let bookingInfo = {
+            attractionId: attractionId,
+            date: date,
+            time: time,
+            price: price,
+          };
+
+          fetch("/api/booking", {
+            method: "POST",
+            body: JSON.stringify(bookingInfo),
+            headers: { "Content-Type": "application/json" },
+          })
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (data) {
+              if (data.ok) {
+                alert("已新增至預定行程，請點右上角按鈕查看");
+                // window.location.href = "/booking";
+              } else if (data.message === "SameTime") {
+                alert("該時段已有預定行程");
+              } else {
+                alert("伺服器錯誤");
+              }
+            });
+        }
+      } else {
+        signInBtn();
+      }
+    });
+}
+
+function reservation() {
+  fetch("/api/booking", {
+    method: "GET",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const result = data.data;
+
+      if (result.error) {
+        const attractionInfo = document.getElementById("attractionInfo");
+        attractionInfo.remove();
+
+        const main = document.getElementById("main");
+        const noBooking = document.createElement("div");
+        const noBookingTitle = document.createElement("div");
+        const noBookingMessage = document.createElement("div");
+
+        noBookingTitle.textContent = `您好，${result.userName}，待預定的行程如下：`;
+        noBookingTitle.className = "bookingTitle";
+
+        noBookingMessage.textContent = "目前沒有任何待預訂的行程";
+        noBookingMessage.className = "bookingText";
+
+        noBooking.appendChild(noBookingTitle);
+        noBooking.appendChild(noBookingMessage);
+        noBooking.className = "noBooking";
+
+        main.appendChild(noBooking);
+        main.style.marginBottom = "-104px";
+        main.style.height = "100%";
+      } else {
+        const bookingTitle = document.getElementById("bookingTitle");
+        bookingTitle.textContent = `您好，${result[0].userName}，待預定的行程如下：`;
+
+        const bookingName = document.getElementById("bookingName");
+        bookingName.value = result[0].userName;
+
+        const bookingEmail = document.getElementById("bookingEmail");
+        bookingEmail.value = result[0].email;
+
+        let total = 0;
+        for (let i = 0; i < result.length; i++) {
+          const bookingItem = document.getElementById("bookingItem");
+          const oneBookingItem = document.createElement("div");
+          const bookingItemImg = document.createElement("div");
+          const bookingItemInfo = document.createElement("div");
+          const bookingItemTitle = document.createElement("div");
+          const bookingDate = document.createElement("div");
+          const bookingTime = document.createElement("div");
+          const bookingPrice = document.createElement("div");
+          const bookingAddress = document.createElement("div");
+          const trashCan = document.createElement("div");
+
+          bookingItemImg.style.backgroundImage = `url(${result[i].attraction.image})`;
+          bookingItemImg.className = "bookingItemImg";
+          oneBookingItem.appendChild(bookingItemImg);
+
+          bookingItemTitle.textContent = `台北一日遊：${result[i].attraction.name}`;
+          bookingItemTitle.className = "bookingItemTitle";
+          bookingItemTitle.id = `name${i}`;
+          bookingItemInfo.appendChild(bookingItemTitle);
+
+          bookingDate.textContent = `日期：${result[i].date}`;
+          bookingDate.className = "bookingText";
+          bookingDate.id = `date${i}`;
+          bookingItemInfo.appendChild(bookingDate);
+
+          if (result[i].time === "morning") {
+            bookingTime.textContent = "時間：早上9點到下午2點";
+            bookingTime.className = "bookingText";
+            bookingTime.id = `time${i}`;
+            bookingItemInfo.appendChild(bookingTime);
+          } else {
+            bookingTime.textContent = "時間：下午3點到晚上8點";
+            bookingTime.className = "bookingText";
+            bookingTime.id = `time${i}`;
+            bookingItemInfo.appendChild(bookingTime);
+          }
+
+          bookingPrice.textContent = `費用：新台幣${result[i].price}元`;
+          bookingPrice.className = "bookingText";
+          bookingItemInfo.appendChild(bookingPrice);
+
+          bookingAddress.textContent = `地點：${result[i].attraction.address}`;
+          bookingAddress.className = "bookingText";
+          bookingItemInfo.appendChild(bookingAddress);
+
+          trashCan.className = "trashCan";
+          trashCan.id = `trash${i}`;
+          trashCan.onclick = trash;
+
+          bookingItemInfo.appendChild(trashCan);
+          bookingItemInfo.className = "bookingItemInfo";
+
+          oneBookingItem.appendChild(bookingItemInfo);
+          oneBookingItem.className = "oneBookingItem";
+          bookingItem.appendChild(oneBookingItem);
+
+          total += result[i].price;
+        }
+        const price = document.getElementById("price");
+        price.textContent = `總價：新台幣${total}元`;
+      }
+    });
+}
+
+function trash(id) {
+  let trashId = id.path[0].id;
+
+  const date = document.getElementById(`date${trashId.slice(5)}`).innerHTML;
+  let time = document.getElementById(`time${trashId.slice(5)}`).innerText;
+
+  if (time.slice(3) === "早上9點到下午2點") {
+    time = "morning";
+  } else {
+    time = "afternoon";
+  }
+
+  let deleteItem = { date: date.slice(3), time: time };
+
+  fetch("/api/booking", {
+    method: "DELETE",
+    body: JSON.stringify(deleteItem),
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.ok) {
+        id.path[2].remove();
+        location.reload();
+      } else {
+        alert(data.message);
+      }
+    });
 }

@@ -29,7 +29,7 @@ function signInOrNotForBookingPage() {
       if (data.data !== null) {
         let registerBtn = document.getElementById("register-btn");
         registerBtn.textContent = "登出系統";
-        registerBtn.onclick = signOut;
+        registerBtn.onclick = signOutForBookingPage;
       } else {
         window.location.href = "/";
       }
@@ -47,6 +47,21 @@ function signOut() {
       if (data.ok) {
         alert("已登出系統");
         location.reload();
+      }
+    });
+}
+
+function signOutForBookingPage() {
+  fetch("/api/user/auth", {
+    method: "DELETE",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.ok) {
+        alert("已登出系統");
+        window.location.href = "/";
       }
     });
 }
@@ -379,7 +394,6 @@ function trash(id) {
     .then(function (data) {
       if (data.ok) {
         id.path[2].remove();
-        location.reload();
       } else {
         alert(data.message);
       }

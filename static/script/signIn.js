@@ -394,6 +394,10 @@ function trash(id) {
     .then(function (data) {
       if (data.ok) {
         id.path[2].remove();
+        const trashCan = document.querySelector(".trashCan");
+        if (trashCan === null) {
+          location.reload();
+        }
       } else {
         alert(data.message);
       }

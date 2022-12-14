@@ -257,6 +257,10 @@ input {
   hr {
     width: 90%;
   }
+
+  #remind {
+    line-height: normal;
+  }
 }
 
 @media (max-width: 360px) {

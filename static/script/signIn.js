@@ -348,6 +348,7 @@ function reservation() {
 
           bookingAddress.textContent = `地點：${result[i].attraction.address}`;
           bookingAddress.className = "bookingText";
+          bookingAddress.id = "address";
           bookingItemInfo.appendChild(bookingAddress);
 
           trashCan.className = "trashCan";

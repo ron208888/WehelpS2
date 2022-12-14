@@ -267,7 +267,7 @@ input {
   input {
     width: 50%;
   }
-  .bookingText {
+  #address {
     line-height: normal;
   }
 }

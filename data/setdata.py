@@ -7,6 +7,7 @@ with open("taipei-attractions.json", encoding="utf-8") as f:
     data = json.load(f)
     result = data["result"]["results"]
 
+    print(type(result))
 try:
     connection = mysql.connector.connect(
         host="localhost",
@@ -48,9 +49,12 @@ try:
         x["file"] = "".join(img[count])
         images = x["file"]
 
+        # print(name,category,description,address,transport,mrt,lat,lng,images)
+
         cursor.execute(add_data, (id, name, category,
                                   description, address, transport, mrt, lat, lng, images))
         connection.commit()
+        print("寫入成功")
 
 
 except Error as e:

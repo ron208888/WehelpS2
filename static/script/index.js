@@ -166,3 +166,7 @@ window.addEventListener("load", function () {
     }
   };
 });
+
+function toHome() {
+  window.location.href = " /";
+}

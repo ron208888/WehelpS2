@@ -13,7 +13,7 @@ dbconfig = {
     "host": "localhost",
     "database": "taipei_day_trip",
     "user": "root",
-    "passwd": "12345678",
+    "passwd": "ronally131",
     "charset": "utf8mb4", "auth_plugin": 'mysql_native_password'}
 
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(

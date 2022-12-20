@@ -15,6 +15,7 @@
       type="text/javascript"
     ></script>
     <script src="../static/script/signIn.js" type="text/javascript"></script>
+    <script src="../static/script/booking.js" type="text/javascript"></script>
     <title>景點介紹</title>
   </head>
   <body onload="getAttraction();signInOrNot() ">
@@ -24,7 +25,9 @@
           <div id="nav-content">
             <div id="title-text" onclick="toHome()">台北一日遊</div>
             <div id="nav-btns">
-              <button id="reservation-btn">預定行程</button>
+              <button id="reservation-btn" onclick="signInBooking()">
+                預定行程
+              </button>
               <button id="register-btn" onclick="signInBtn()">登入/註冊</button>
             </div>
           </div>
@@ -120,7 +123,7 @@
               <div id="bookingIntro">
                 以此景點為中心的一日行程，帶您探索城市角落故事
               </div>
-              <form action="#">
+              <form action="/" onsubmit="return false">
                 <div id="date">
                   選擇日期：<input type="date" id="chooseDate" />
                 </div>
@@ -153,7 +156,9 @@
                   <div id="feeTitle">導覽費用：</div>
                   <div id="feeCount"></div>
                 </div>
-                <button id="startTrip">開始預約行程</button>
+                <button type="button" id="startTrip" onclick="startBooking()">
+                  開始預約行程
+                </button>
               </form>
             </div>
           </div>

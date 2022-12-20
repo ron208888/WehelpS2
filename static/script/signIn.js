@@ -322,7 +322,8 @@ function reservation() {
 
           bookingItemTitle.textContent = `台北一日遊：${result[i].attraction.name}`;
           bookingItemTitle.className = "bookingItemTitle";
-          bookingItemTitle.id = `name${i}`;
+          // bookingItemTitle.id = `name${i}`;
+          bookingItemTitle.id = result[i].attraction.id;
           bookingItemInfo.appendChild(bookingItemTitle);
 
           bookingDate.textContent = `日期：${result[i].date}`;
@@ -332,13 +333,13 @@ function reservation() {
 
           if (result[i].time === "morning") {
             bookingTime.textContent = "時間：早上9點到下午2點";
-            bookingTime.className = "bookingText";
-            bookingTime.id = `time${i}`;
+            bookingTime.className = "bookingTime";
+            bookingTime.id = `morning${i}`;
             bookingItemInfo.appendChild(bookingTime);
           } else {
             bookingTime.textContent = "時間：下午3點到晚上8點";
-            bookingTime.className = "bookingText";
-            bookingTime.id = `time${i}`;
+            bookingTime.className = "bookingTime";
+            bookingTime.id = `afternoon${i}`;
             bookingItemInfo.appendChild(bookingTime);
           }
 
@@ -348,7 +349,7 @@ function reservation() {
 
           bookingAddress.textContent = `地點：${result[i].attraction.address}`;
           bookingAddress.className = "bookingText";
-          bookingAddress.id = "address";
+          bookingAddress.id = `address${i}`;
           bookingItemInfo.appendChild(bookingAddress);
 
           trashCan.className = "trashCan";
@@ -374,7 +375,10 @@ function trash(id) {
   let trashId = id.path[0].id;
 
   const date = document.getElementById(`date${trashId.slice(5)}`).innerHTML;
-  let time = document.getElementById(`time${trashId.slice(5)}`).innerText;
+
+  let time =
+    document.getElementsByClassName("bookingTime")[trashId.slice(5)]
+      .textContent;
 
   if (time.slice(3) === "早上9點到下午2點") {
     time = "morning";
@@ -395,10 +399,11 @@ function trash(id) {
     .then(function (data) {
       if (data.ok) {
         id.path[2].remove();
+        location.reload();
         const trashCan = document.querySelector(".trashCan");
-        if (trashCan === null) {
-          location.reload();
-        }
+        // if (trashCan === null) {
+        //   location.reload();
+        // }
       } else {
         alert(data.message);
       }

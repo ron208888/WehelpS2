@@ -37,7 +37,7 @@ main {
   width: 1200px;
   position: relative;
   display: grid;
-  grid-template-rows: auto 44px 250px 44px 220px 44px 180px;
+  grid-template-rows: auto 44px 300px 44px 220px 44px 180px;
   justify-content: center;
 }
 
@@ -75,6 +75,12 @@ form {
 }
 
 .input {
+  width: 200px;
+  height: 38px;
+
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+
   margin-bottom: 20px;
   margin-left: 5px;
   font-family: "Noto Sans TC";
@@ -151,6 +157,7 @@ input {
   color: #448899;
 }
 
+.bookingTime,
 .bookingText {
   margin-bottom: 20px;
 
@@ -183,6 +190,39 @@ input {
   width: 980px;
 
   position: relative;
+}
+
+.credit-card-input {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+  white-space: nowrap;
+
+  color: #666666;
+}
+
+.tpfield {
+  width: 213px;
+  height: 42px;
+
+  margin-left: 5px;
+  padding-left: 5px;
+
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 13px;
+
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
 }
 
 @media (max-width: 1200px) {

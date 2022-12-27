@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from flask import *
 import mysql.connector
 import mysql.connector.pooling
@@ -11,12 +13,13 @@ import datetime
 import re
 
 order = Blueprint("order", __name__)
+load_dotenv()
 
 dbconfig = {
     "host": "localhost",
     "database": "taipei_day_trip",
     "user": "root",
-    "passwd": "12345678",
+    "passwd": os.getenv("db_password"),
     "charset": "utf8mb4", "auth_plugin": 'mysql_native_password'}
 
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(
@@ -34,7 +37,6 @@ def orders():
     data_read = json.loads(data)
 
     prime = data_read["prime"]
-    merchant_id = ""
     customer_phone_number = data_read["order"]["contact"]["phone"]
     customer_name = data_read["order"]["contact"]["name"]
     customer_email = data_read["order"]["contact"]["email"]
@@ -57,16 +59,16 @@ def orders():
                        (order_number, customer_phone_number, id))
         cnx.commit()
 
-        api_endpoint = "https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime"
+        api_endpoint = os.getenv("api_endpoint")
         headers = {
             "Content-Type": "application/json",
-            "x-api-key": ""
+            "x-api-key": os.getenv("x-api-key")
         }
 
         payload = {
             "prime": prime,
-            "partner_key": "",
-            "merchant_id": merchant_id,
+            "partner_key": os.getenv("partner_key"),
+            "merchant_id": os.getenv("merchant_id"),
             "details": "TapPay Test",
             "amount": price,
             "order_number": order_number,

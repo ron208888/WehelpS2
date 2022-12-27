@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from flask import *
 import mysql.connector
 import mysql.connector.pooling
@@ -8,12 +10,13 @@ import jwt
 from flask import make_response
 
 user = Blueprint("user", __name__)
+load_dotenv()
 
 dbconfig = {
     "host": "localhost",
     "database": "taipei_day_trip",
     "user": "root",
-    "passwd": "12345678",
+    "passwd": os.getenv("db_password"),
     "charset": "utf8mb4", "auth_plugin": 'mysql_native_password'}
 
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(
